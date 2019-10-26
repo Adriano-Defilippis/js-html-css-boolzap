@@ -152,7 +152,7 @@ function sendMsg(){
     console.log(el.getAttribute("class"));
     if (el.getAttribute("class").includes('active')) {
 
-      el.append(html);
+      $('#chat-window .wrapper-chat.active').append(html);
     }
   }
 }
