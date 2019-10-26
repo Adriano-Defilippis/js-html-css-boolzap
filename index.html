@@ -24,7 +24,7 @@
       <div id="contact">
 
         <!-- Header User contact list -->
-        <header class="user">
+        <header class="user flex">
 
           <!-- Immagine del profilo -->
           <div class="img-profile">
@@ -48,12 +48,10 @@
         </header>
 
         <!-- SEARCH BAR -->
-        <div class="searchBar">
+        <div class="search-bar">
 
-          <div>
-            <i class="fas fa-search"></i>
-            <input type="text" name="" value="" placeholder="Cerca tra i tuoi contatti">
-          </div>
+          <input type="text" name="" value="" placeholder="Cerca tra i tuoi contatti">
+          <i class="fas fa-search"></i>
 
         </div>
 
@@ -65,8 +63,6 @@
         </div>
 
       </div>
-
-
 
         <!-- Sezione chat attiva -->
         <div id="chat-window">
@@ -108,7 +104,7 @@
     <!-- </div> -->
 
 
-    <!-- handlebars template -->
+    <!-- handlebars templates -->
 
     <!-- Template Contatti in lista -->
     <script id="contact-template" type="text/javascript" type="text/x-handlebars-template">
@@ -158,7 +154,27 @@
         </div>
       </div>
 
+    </script>
 
+    <!-- Template per aggiungere info chat attiva -->
+    <script id="info-chat-template"  type="text/x-handlebars-template">
+
+      <!-- Immagine del profilo Destinatario messagio -->
+      <div class="img-profile">
+        <img src="immagini/{{img}}" alt="">
+      </div>
+
+      <div class="info-contact">
+        <h4>{{contact_name}}</h4>
+        <p>ultimo accesso oggi alle 11:45</p>
+      </div>
+
+      <!-- Azioni per la chat -->
+      <div class="actions">
+        <i class="fas fa-paperclip"></i>
+        <i class="fas fa-search"></i>
+        <i class="fas fa-ellipsis-v"></i>
+      </div>
 
     </script>
 

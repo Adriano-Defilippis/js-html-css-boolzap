@@ -48,6 +48,7 @@ function init(){
   //non esiste, se esiste attiva la chat e disattive tutte le altre
   $(document).on('click', '.contacts li' , checkPrintActiveChat);
 
+  // Invio del massaggio
   $(document).on('click', '#sendMsg' , sendMsg);
 
 }
@@ -78,7 +79,7 @@ function printContactList(array){
 
 // Funzione che usa handlebars per stampare la chat relativa al contatto
 // cliccato, se questo non è presente
-function checkPrintActiveChat(id_contact){
+function checkPrintActiveChat(){
 
   // Rimuovo la classe active dalle chat attive
   $('#chat-window main .wrapper-chat').removeClass('active');
@@ -128,7 +129,8 @@ function checkPrintActiveChat(id_contact){
     }
   }
 
-
+  // Stampo le info della chat ATTIVA
+  printInfoChat(id_contact);
 }
 
 // Funzione per inviare un messaggio per la chat attiva relativa
@@ -148,11 +150,75 @@ function sendMsg(){
 
   for (var i = 0; i < chat.length; i++) {
     var el = chat[i];
-
+    // Appendo il template solo sulla chat attiva
     console.log(el.getAttribute("class"));
     if (el.getAttribute("class").includes('active')) {
 
       $('#chat-window .wrapper-chat.active').append(html);
+    }
+  }
+}
+
+// Funzione che al click stampa le info sulla chat ATTIVA
+function printInfoChat(id){
+
+  // Rimuovo il template precedente
+  $('#active-contact').html('');
+
+  // Array Rubrica
+  var contacts = [
+
+   {
+
+    id: 1,
+    name: "Luca",
+    img: "luca.jpg"
+  },
+
+  {
+    id: 5,
+    name: "Antonio",
+    img: "antonio.jpg"
+   },
+
+  {
+    id: 2,
+    name: "Francesco",
+    img: "francesco.jpg"
+    },
+
+    {
+
+    id: 3,
+    name: "Paolo",
+    img: "paolo.jpg"
+    },
+
+   {
+
+    id: 4,
+    name: "Nicola",
+    img: "nicola.jpg"
+    }
+  ];
+
+  var source = document.getElementById('info-chat-template').innerHTML;
+  var template = Handlebars.compile(source);
+
+  // Trovo nell'array rubrica tramite id, il contatto dal quale
+  //estrarre i valori per completare il template
+  for (var i = 0; i < contacts.length; i++) {
+
+    var el = contacts[i];
+
+    if (el.id == id) {
+      var context = {
+        contact_name: el.name,
+        img: el.img
+      };
+
+      var html = template(context);
+      $('#active-contact').prepend(html);
     }
   }
 }
