@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+    <link rel="stylesheet" href="animations.css">
+    <link rel="stylesheet" href="master.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+    <!-- handlebars -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.4.2/handlebars.js" type="text/javascript"></script>
+
+    <title>BoolZaap</title>
+  </head>
+  <body>
+
+    <!-- Contenitore singol page -->
+    <div class="wrapper">
+
+      <!-- Sezione Lista Contatti e azioni contatti -->
+      <div id="contact">
+
+        <!-- Header User contact list -->
+        <header class="user">
+
+          <!-- Immagine del profilo -->
+          <div class="img-profile">
+            <img src="immagini/octobiwan.jpg" alt="">
+          </div>
+
+          <!-- info chat contatto -->
+          <div class="user-info">
+            <span>{{name_user}}</span>
+          </div>
+
+          <!-- Azioni per la chat -->
+          <div class="actions">
+
+            <i class="fas fa-comment-alt"></i>
+            <i class="fas fa-redo"></i>
+            <i class="fas fa-ellipsis-v"></i>
+          </div>
+
+
+        </header>
+
+        <!-- SEARCH BAR -->
+        <div class="searchBar">
+
+          <div>
+            <i class="fas fa-search"></i>
+            <input type="text" name="" value="" placeholder="Cerca tra i tuoi contatti">
+          </div>
+
+        </div>
+
+        <div id="contact-list">
+
+          <ul class="contacts">
+
+          </ul>
+        </div>
+
+      </div>
+
+
+
+        <!-- Sezione chat attiva -->
+        <div id="chat-window">
+
+          <!-- Header chat attiva -->
+          <header id="active-contact">
+
+
+          </header>
+
+          <!-- CHAT -->
+          <main>
+
+          </main>
+
+          <!-- INPUT BAR -->
+          <div id="input-bar">
+
+            <!-- Div scelta emoticons -->
+            <div class="emoticon">
+              <i class="far fa-smile fa-lg"></i>
+            </div>
+
+            <!-- Div inserimento messaggio -->
+            <div id="inputMsg">
+              <input type="text" name="" value="" placeholder="Scrivi un messaggio">
+            </div>
+
+            <!-- Div icone invio messaggio -->
+            <div id="sendMsg">
+              <i class="fas fa-paper-plane fa-lg"></i>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    <!-- </div> -->
+
+
+    <!-- handlebars template -->
+
+    <!-- Template Contatti in lista -->
+    <script id="contact-template" type="text/javascript" type="text/x-handlebars-template">
+      <li id="{{contact_id}}">
+        <!-- Immagine del contatto -->
+        <div class="img-profile">
+          <img src="immagini/{{src_img}}" alt="img">
+        </div>
+
+        <!-- info chat contatto -->
+        <div class="user-info">
+          <span>{{name_contact}}</span>
+        </div>
+        <!-- info chat -->
+        <div class="chat-info">
+          <span>{{time}}</span>
+          <span>{{icon}}</span>
+        </div>
+
+      </li>
+    </script>
+
+    <!-- Template finestra chat attiva -->
+    <script id="wrapper-chat-template"  type="text/x-handlebars-template">
+
+      <div data-id="{{id}}" class="wrapper-chat">
+        <div class="user-chat">
+          <div class="message">
+            ciao
+          </div>
+        </div>
+        <div class="contact-chat">
+          <div class="message">
+            ciao
+          </div>
+        </div>
+      </div>
+
+    </script>
+
+    <!-- Template per aggiungere messaggi -->
+    <script id="msg-template"  type="text/x-handlebars-template">
+
+      <div class="message">
+        {{text}}
+      </div>
+
+    </script>
+
+  </body>
+</html>

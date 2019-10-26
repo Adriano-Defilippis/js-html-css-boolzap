@@ -1,0 +1,149 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  list-style: none;
+}
+
+/* CONTENITORE PAGINA */
+.wrapper{
+  width: 100vw;
+  height: 100vh;
+  background: lightgrey;
+
+  position: relative;
+}
+
+
+#contact,
+#chat-window{
+  height: 100%;
+  float: left;
+}
+
+/* CSS PER BLOCCO CONTATTI */
+#contact{
+  width: 300px;
+  background: lightgreen;
+}
+#contact div.img-profile,
+#contact .actions{
+  height: 100%;
+  float: left;
+
+  display: flex;
+  align-items: center;
+}
+
+#contact div.img-profile{
+  width: 25%;
+
+}
+
+#contact .img-profile img{
+  height: 50px;
+  width: 50px;
+  border-radius: 100%;
+}
+
+#contact .actions,
+#chat-window header .actions{
+  width: 25%;
+  justify-content: space-around;
+
+}
+
+/* contact list */
+#contact-list {
+  display: flex;
+  flex-direction: column;
+}
+
+#contact-list .contacts li{
+  width: 100%;
+  height: 75px;
+
+  display: flex;
+  align-items: center;
+
+  cursor: pointer;
+}
+
+
+/* CSS PER CHAT ATTIVA */
+#chat-window{
+  width: calc(100% - 300px);
+  background-color: pink;
+}
+
+#chat-window header,
+#contact header{
+  background: lightgrey;
+  height: 75px;
+}
+
+#chat-window main{
+  background-color: lightblue;
+
+  height: calc(100% - 150px);
+  padding: 20px;
+}
+
+.wrapper-chat{
+  width: 100%;
+  height: 100%;
+
+  display: none;
+}
+
+.wrapper-chat .user-chat,
+.wrapper-chat .contact-chat{
+  width: 100%;
+  height: 50px;
+}
+
+.message{
+  display: flex;
+
+  padding: 10px;
+  border-radius: 10px;
+
+  align-self: center;
+}
+
+.wrapper-chat .user-chat .message{
+  float: right;
+
+  background: lightgreen;
+}
+
+.wrapper-chat .contact-chat .message{
+  float: left;
+
+  background: white;
+}
+
+#chat-window #input-bar{
+  background-color: lightgrey;
+
+  height: 75px;
+}
+
+
+
+
+/* INPUT-BAR */
+#input-bar,
+#chat-window header{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+}
+
+
+/* HELPER CLASS */
+.active{
+  display: block;
+}
