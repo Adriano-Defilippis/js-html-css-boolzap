@@ -10,72 +10,82 @@ function init(){
 
     id: 1,
     name: "Luca",
-    img: "luca.jpg"
+    img: "luca.jpg",
+    last_access: randomTime()
   },
 
   {
     id: 5,
     name: "Antonio",
-    img: "antonio.jpg"
+    img: "antonio.jpg",
+    last_access: randomTime()
    },
 
   {
     id: 2,
     name: "Francesco",
-    img: "francesco.jpg"
+    img: "francesco.jpg",
+    last_access: randomTime()
     },
 
     {
 
     id: 3,
     name: "Paolo",
-    img: "paolo.jpg"
+    img: "paolo.jpg",
+    last_access: randomTime()
     },
 
    {
 
     id: 4,
     name: "Nicola",
-    img: "nicola.jpg"
+    img: "nicola.jpg",
+    last_access: randomTime()
   },
   {
 
    id: 6,
    name: "Luisa",
-   img: "luisa-6.jpg"
+   img: "luisa-6.jpg",
+   last_access: randomTime()
  },
 
  {
    id: 7,
    name: "Luca",
-   img: "luca-7.jpg"
+   img: "luca-7.jpg",
+   last_access: randomTime()
   },
 
  {
    id: 8,
    name: "Imma",
-   img: "imma-8.jpg"
+   img: "imma-8.jpg",
+   last_access: randomTime()
    },
 
    {
 
    id: 9,
    name: "Maria",
-   img: "maria-9.jpg"
+   img: "maria-9.jpg",
+   last_access: randomTime()
    },
 
   {
 
    id: 10,
    name: "Felice",
-   img: "felice-10.jpg"
+   img: "felice-10.jpg",
+   last_access: randomTime()
    }
 
   ];
 
   var targetSearch = $('.search-bar input');
 
-
+  console.log(contacts);
 
   // Stsmpo la lista dei contatti passati tramite
   // Array di oggetti
@@ -85,7 +95,7 @@ function init(){
   //non esiste, se esiste attiva la chat e disattive tutte le altre
   $(document).on('click', '.contacts li' , checkPrintActiveChat);
 
-  // Invio del massaggio
+  // Invio del messaggio
   $(document).on('click', '#sendMsg' , sendMsg);
 
   // Azione per filtro elenco contatti
@@ -111,8 +121,7 @@ function printContactList(array){
       contact_id: array[i].id,
       name_contact: array[i].name,
       src_img: array[i].img,
-      time: array[i].id,
-      icon: array[i].id
+      time: array[i].last_access
     };
 
     var html = template(context);
@@ -123,13 +132,17 @@ function printContactList(array){
   }
 
 // Funzione che usa handlebars per stampare la chat relativa al contatto
-// cliccato, se questo non è presente
+// cliccato, se questo non è presente, altrimenti lo attiva
 function checkPrintActiveChat(){
 
   // Rimuovo la classe active dalle chat attive
   $('#chat-window main .wrapper-chat').removeClass('active');
-
+  // Rimuovo la classe active da tutti gli elementi
+  $('.contact').removeClass('active');
+  // Aggiungo la classe active solo all'elemento cliccato
+  $(this).toggleClass('active');
   var id_contact = $(this).attr('id');
+
   var chat = $('.wrapper-chat');
   var check = false;
 
@@ -183,7 +196,9 @@ function sendMsg(){
 
   var time = new Date();
   var minutes = time.getMinutes();
-  console.log( "0" + minutes);
+  var target_lastMsg= $('#chat-window .wrapper-chat.a');
+
+
   if (minutes < 10) {
     minutes =  "0" + minutes;
   }
@@ -334,7 +349,7 @@ function randomGenerator(array){
 
 // Funzione che stampa la risposta scelta nella array
 // in modo randomico
-function bot(){
+function bot(append_to){
 
   var arr_risposte = [
     "ciao",
@@ -380,6 +395,17 @@ function bot(){
   // Appendo il messaggio in chat
   $('#chat-window .wrapper-chat.active').append(html);
 
+  // inserisco l'ultimo messaggio nel template contatto
+  //nella lista contatti, dopo controllo lunghezza
+  if (randomRisposta.length > 15) {
+    var trimmedRisposta = randomRisposta.substring(0, 13) + "...";
+    console.log(trimmedRisposta);
+    $('.active .last-msg').text(trimmedRisposta);
+
+  }else{
+
+    $('.active .last-msg').text(randomRisposta);
+  }
 }
 
 
@@ -420,4 +446,22 @@ function searchContact(input, contacts, elementi){
 
 
   }
+}
+
+
+// Funzione che genera un orario per l'ultimo accesso,
+//in modo randomico
+function randomTime(){
+
+    var get_hour= Math.floor(Math.random() * 24 + 1);
+    var get_minutes =  Math.floor(Math.random() * 59 + 1);
+
+    if (get_hour < 10) {
+      get_hour = "0" + get_hour;
+    }
+    if (get_minutes < 10) {
+      get_minutes = "0" + get_minutes;
+    }
+    return get_hour + ":" + get_minutes
+
 }

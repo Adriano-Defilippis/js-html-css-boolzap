@@ -117,6 +117,16 @@ div.img-profile,
   cursor: pointer;
 }
 
+.user-info{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: 100%;
+}
+ .user-info .last-msg{
+   min-height: 50%;
+
+ }
 
 /* CSS PER CHAT ATTIVA */
 #chat-window{
@@ -219,6 +229,7 @@ div.img-profile,
 .flex{
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .contact.display_none{
