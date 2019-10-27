@@ -171,6 +171,19 @@ div.img-profile,
   align-self: center;
 }
 
+.message > *{
+  padding: 5px;
+}
+
+.message .fa-caret-down{
+  display: none;
+}
+
+.message:hover
+.fa-caret-down{
+  display: block;
+}
+
 .wrapper-chat .user-chat .message{
   float: right;
 

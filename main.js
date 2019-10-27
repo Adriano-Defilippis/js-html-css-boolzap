@@ -395,8 +395,8 @@ function bot(append_to){
   // Appendo il messaggio in chat
   $('#chat-window .wrapper-chat.active').append(html);
 
-  // inserisco l'ultimo messaggio nel template contatto
-  //nella lista contatti, dopo controllo lunghezza
+  // inserisco l'ultimo messaggio e l'orario relativo
+  //nel template contatto nella lista contatti, dopo controllo lunghezza
   if (randomRisposta.length > 15) {
     var trimmedRisposta = randomRisposta.substring(0, 13) + "...";
     console.log(trimmedRisposta);
@@ -406,6 +406,8 @@ function bot(append_to){
 
     $('.active .last-msg').text(randomRisposta);
   }
+  // Orario ultimo messaggio
+  $('.active .time-lastMsg').text(hours);
 }
 
 

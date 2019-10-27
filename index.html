@@ -123,7 +123,7 @@
           </div>
           <!-- info chat -->
           <div class="chat-info">
-            <span>{{time}}</span>
+            <span class="time-lastMsg">{{time}}</span>
           </div>
         </div>
 
@@ -134,15 +134,24 @@
     <script id="wrapper-chat-template"  type="text/x-handlebars-template">
 
       <div data-id="{{id}}" class="wrapper-chat">
+
         <div class="user-chat">
+
           <div class="message">
-            ciao
+            <p>Ciao!</p>
+            <span> </span><span class="time"> {{ time }}</span>
+            <i class="fas fa-caret-down"></i>
           </div>
         </div>
+
         <div class="contact-chat">
+
           <div class="message">
-            ciao
+            <p>Hey Ciao!</p>
+            <span> </span><span class="time"> {{ time }}</span>
+            <i class="fas fa-caret-down"></i>
           </div>
+
         </div>
       </div>
 
