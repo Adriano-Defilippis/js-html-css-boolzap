@@ -39,6 +39,8 @@ function init(){
     }
   ];
 
+  var targetSearch = $('.search-bar input');
+
 
   // Stsmpo la lista dei contatti passati tramite
   // Array di oggetti
@@ -51,6 +53,13 @@ function init(){
   // Invio del massaggio
   $(document).on('click', '#sendMsg' , sendMsg);
 
+  // Azione per filtro elenco contatti
+  $(targetSearch).keyup(function() {
+
+    var input = $(this).val().toLowerCase();
+
+    searchContact(input, contacts);
+  });
 }
 
 // Funzione che accetta un Array di oggetti
@@ -136,14 +145,25 @@ function checkPrintActiveChat(){
 // Funzione per inviare un messaggio per la chat attiva relativa
 function sendMsg(){
 
+  var time = new Date();
+  var minutes = time.getMinutes();
+  console.log( "0" + minutes);
+  if (minutes < 10) {
+    minutes =  "0" + minutes;
+  }
+  var hours = time.getHours() + ":" + minutes;
+
   var msg = $('#inputMsg input').val();
   var chat = $('.wrapper-chat');
+
+  console.log(hours);
 
   var source = document.getElementById('msg-template').innerHTML;
   var template = Handlebars.compile(source);
 
   var context = {
-    text: msg
+    text: msg,
+    time: hours
   };
 
   var html = template(context);
@@ -153,10 +173,14 @@ function sendMsg(){
     // Appendo il template solo sulla chat attiva
     console.log(el.getAttribute("class"));
     if (el.getAttribute("class").includes('active')) {
-
+      // Appendo il messaggio inviato nella finestra di chat attiva
       $('#chat-window .wrapper-chat.active').append(html);
+      // Risposta al messaggio in uscita
+      bot();
     }
   }
+
+
 }
 
 // Funzione che al click stampa le info sulla chat ATTIVA
@@ -219,6 +243,96 @@ function printInfoChat(id){
 
       var html = template(context);
       $('#active-contact').prepend(html);
+    }
+  }
+}
+
+// Funzione che restituisce un elemeneto dell'array in ingrasso in modo
+//randomico
+function randomGenerator(array){
+
+  var rand = Math.floor(Math.random() * (array.length -1));
+
+  for (var i = 0; i < array.length; i++) {
+
+    var element = array[i];
+
+    if (i == rand) {
+      return element;
+    }
+  }
+}
+
+
+// Funzione che stampa la risposta scelta nella array
+// in modo randomico
+function bot(){
+
+  var arr_risposte = [
+    "ciao",
+    "sono solo un robot scemo",
+    "dico sempre le stesse cose",
+    "è inutile che chiedi, tanto sono scemo",
+    "smettila",
+    "ora sono stanco",
+    "buona notte",
+    "magari domani possiamo parlare con calma",
+    "sto rientrando solo adesso",
+    "ci sentiamo!",
+    "spengo il telefono",
+    "speriamo",
+    "non lo so",
+    "penso di dormire"
+  ];
+
+  var randomRisposta = randomGenerator(arr_risposte);
+
+  // Clacolo dell'ora di ricezione del messaggio
+  var time = new Date();
+  var minutes = time.getMinutes();
+  console.log( "0" + minutes);
+  if (minutes < 10) {
+    minutes =  "0" + minutes;
+  }
+  var hours = time.getHours() + ":" + minutes;
+
+  var source = document.getElementById('msg-risposta-template').innerHTML;
+  var template = Handlebars.compile(source);
+
+  var context = {
+    text: randomRisposta,
+    time: hours
+  };
+
+  // Appendo la risposta con template Handlebars
+  var html = template(context);
+
+
+
+  // Appendo il messaggio in chat
+  $('#chat-window .wrapper-chat.active').append(html);
+
+}
+
+
+// Funzione per il filro nell'elenco contatti
+function searchContact(input, contacts){
+
+  console.log(input);
+  console.log(contacts);
+  var name;
+  var id;
+  // var contact_list = $('.contact .user-info');
+  // console.log(contact_list.children('span').text());
+
+  // Ciclo array contatti per trovare nome ed id
+  for (var i = 0; i < contacts.length; i++) {
+
+    name = contacts[i].name.toLowerCase();
+
+    //Se L'elemento del ciclo, include il valore digitato
+    if (name.includes(input)) {
+      console.log(name);
     }
   }
 }

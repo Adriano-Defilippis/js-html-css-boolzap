@@ -108,7 +108,7 @@
 
     <!-- Template Contatti in lista -->
     <script id="contact-template" type="text/javascript" type="text/x-handlebars-template">
-      <li id="{{contact_id}}">
+      <li class="contact" id="{{contact_id}}">
         <!-- Immagine del contatto -->
         <div class="img-profile">
           <img src="immagini/{{src_img}}" alt="img">
@@ -145,12 +145,27 @@
 
     </script>
 
-    <!-- Template per aggiungere messaggi -->
+    <!-- Template per aggiungere messaggi utente user -->
     <script id="msg-template"  type="text/x-handlebars-template">
+
+      <div class="user-chat">
+        <div class="message">
+          <p>{{ text }} </p>
+          <span> </span><span class="time"> {{ time }}</span>
+          <i class="fas fa-caret-down"></i>
+        </div>
+      </div>
+
+    </script>
+
+    <!-- Template per aggiungere messaggi utente contact -->
+    <script id="msg-risposta-template"  type="text/x-handlebars-template">
 
       <div class="contact-chat">
         <div class="message">
-          {{text}}
+          <p>{{ text }} </p>
+          <span> </span><span class="time"> {{ time }}</span>
+          <i class="fas fa-caret-down"></i>
         </div>
       </div>
 
