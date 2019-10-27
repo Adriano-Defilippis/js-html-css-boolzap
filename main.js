@@ -2,7 +2,8 @@ $(document).ready(init);
 
 function init(){
 
-  // Array Rubrica
+  // Array Rubrica !!IMPORTANTE : se cambia, cambiare anche quello nella funzione
+  //per stampare l'intestazione della chat attiva
   var contacts = [
 
    {
@@ -36,10 +37,44 @@ function init(){
     id: 4,
     name: "Nicola",
     img: "nicola.jpg"
-    }
+  },
+  {
+
+   id: 6,
+   name: "Luisa",
+   img: "luisa-6.jpg"
+ },
+
+ {
+   id: 7,
+   name: "Luca",
+   img: "luca-7.jpg"
+  },
+
+ {
+   id: 8,
+   name: "Imma",
+   img: "imma-8.jpg"
+   },
+
+   {
+
+   id: 9,
+   name: "Maria",
+   img: "maria-9.jpg"
+   },
+
+  {
+
+   id: 10,
+   name: "Felice",
+   img: "felice-10.jpg"
+   }
+
   ];
 
   var targetSearch = $('.search-bar input');
+
 
 
   // Stsmpo la lista dei contatti passati tramite
@@ -56,9 +91,10 @@ function init(){
   // Azione per filtro elenco contatti
   $(targetSearch).keyup(function() {
 
+    var contact_on_video = $('.contact');
     var input = $(this).val().toLowerCase();
 
-    searchContact(input, contacts);
+    searchContact(input, contacts, contact_on_video);
   });
 }
 
@@ -223,7 +259,39 @@ function printInfoChat(id){
     id: 4,
     name: "Nicola",
     img: "nicola.jpg"
-    }
+    },
+    {
+
+     id: 6,
+     name: "Luisa",
+     img: "luisa-6.jpg"
+   },
+
+   {
+     id: 7,
+     name: "Luca",
+     img: "luca-7.jpg"
+    },
+
+   {
+     id: 8,
+     name: "Imma",
+     img: "imma-8.jpg"
+     },
+
+     {
+
+     id: 9,
+     name: "Maria",
+     img: "maria-9.jpg"
+     },
+
+    {
+
+     id: 10,
+     name: "Felice",
+     img: "felice-10.jpg"
+     }
   ];
 
   var source = document.getElementById('info-chat-template').innerHTML;
@@ -316,10 +384,10 @@ function bot(){
 
 
 // Funzione per il filro nell'elenco contatti
-function searchContact(input, contacts){
+function searchContact(input, contacts, elementi){
 
-  console.log(input);
-  console.log(contacts);
+  // metto tutti i contact in display none
+  $('.contact').addClass('display_none');
   var name;
   var id;
   // var contact_list = $('.contact .user-info');
@@ -332,7 +400,24 @@ function searchContact(input, contacts){
 
     //Se L'elemento del ciclo, include il valore digitato
     if (name.includes(input)) {
-      console.log(name);
+      // Estrapolo l'id
+      id = contacts[i].id;
+      console.log(name, id);
+      // Cerco tra i contatto l'id, attivo la classe
+      //disattivandola a tutti gli altri
+      elementi.each(function(index, el) {
+        console.log(el.id == id);
+        if (el.id == id) {
+          console.log(el);
+          // Mostro il contatto che ha la corrispondenza esatta
+          el.setAttribute( 'class', 'contact' );
+          console.log(el);
+        }
+
+      });
+
     }
+
+
   }
 }

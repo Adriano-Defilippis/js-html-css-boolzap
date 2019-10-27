@@ -109,19 +109,22 @@
     <!-- Template Contatti in lista -->
     <script id="contact-template" type="text/javascript" type="text/x-handlebars-template">
       <li class="contact" id="{{contact_id}}">
-        <!-- Immagine del contatto -->
-        <div class="img-profile">
-          <img src="immagini/{{src_img}}" alt="img">
-        </div>
 
-        <!-- info chat contatto -->
-        <div class="user-info">
-          <span>{{name_contact}}</span>
-        </div>
-        <!-- info chat -->
-        <div class="chat-info">
-          <span>{{time}}</span>
-          <span>{{icon}}</span>
+        <div class="flex">
+          <!-- Immagine del contatto -->
+          <div class="img-profile">
+            <img src="immagini/{{src_img}}" alt="img">
+          </div>
+
+          <!-- info chat contatto -->
+          <div class="user-info">
+            <span>{{name_contact}}</span>
+          </div>
+          <!-- info chat -->
+          <div class="chat-info">
+            <span>{{time}}</span>
+            <span>{{icon}}</span>
+          </div>
         </div>
 
       </li>
