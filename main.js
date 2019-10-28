@@ -106,6 +106,9 @@ function init(){
 
     searchContact(input, contacts, contact_on_video);
   });
+
+  // Azione per eleminare ultimo messaggio
+  $(document).on('click', '.message .fa-caret-down', activedrop)
 }
 
 // Funzione che accetta un Array di oggetti
@@ -187,8 +190,8 @@ function checkPrintActiveChat(){
     }
   }
 
-  // Stampo le info della chat ATTIVA
-  printInfoChat(id_contact);
+    // Stampo le info della chat ATTIVA
+    printInfoChat(id_contact);
 }
 
 // Funzione per inviare un messaggio per la chat attiva relativa
@@ -351,63 +354,76 @@ function randomGenerator(array){
 // in modo randomico
 function bot(append_to){
 
-  var arr_risposte = [
-    "ciao",
-    "sono solo un robot scemo",
-    "dico sempre le stesse cose",
-    "è inutile che chiedi, tanto sono scemo",
-    "smettila",
-    "ora sono stanco",
-    "buona notte",
-    "magari domani possiamo parlare con calma",
-    "sto rientrando solo adesso",
-    "ci sentiamo!",
-    "spengo il telefono",
-    "speriamo",
-    "non lo so",
-    "penso di dormire"
-  ];
+  // Aggiungo animazione in attesa della timing function
+  setTimeout(function(){
+    addAnimation();
+  }, 0);
 
-  var randomRisposta = randomGenerator(arr_risposte);
+  setTimeout(function(){
 
-  // Clacolo dell'ora di ricezione del messaggio
-  var time = new Date();
-  var minutes = time.getMinutes();
-  console.log( "0" + minutes);
-  if (minutes < 10) {
-    minutes =  "0" + minutes;
-  }
-  var hours = time.getHours() + ":" + minutes;
+    // rimuovo Animazione
+    $('.contact-chat.animation').remove();
 
-  var source = document.getElementById('msg-risposta-template').innerHTML;
-  var template = Handlebars.compile(source);
+    var arr_risposte = [
+      "ciao",
+      "sono solo un robot scemo",
+      "dico sempre le stesse cose",
+      "è inutile che chiedi, tanto sono scemo",
+      "smettila",
+      "ora sono stanco",
+      "buona notte",
+      "magari domani possiamo parlare con calma",
+      "sto rientrando solo adesso",
+      "ci sentiamo!",
+      "spengo il telefono",
+      "speriamo",
+      "non lo so",
+      "penso di dormire"
+    ];
 
-  var context = {
-    text: randomRisposta,
-    time: hours
-  };
+    var randomRisposta = randomGenerator(arr_risposte);
 
-  // Appendo la risposta con template Handlebars
-  var html = template(context);
+    // Clacolo dell'ora di ricezione del messaggio
+    var time = new Date();
+    var minutes = time.getMinutes();
+    console.log( "0" + minutes);
+    if (minutes < 10) {
+      minutes =  "0" + minutes;
+    }
+    var hours = time.getHours() + ":" + minutes;
+
+    var source = document.getElementById('msg-risposta-template').innerHTML;
+    var template = Handlebars.compile(source);
+
+    var context = {
+      text: randomRisposta,
+      time: hours
+    };
+
+    // Appendo la risposta con template Handlebars
+    var html = template(context);
 
 
 
-  // Appendo il messaggio in chat
-  $('#chat-window .wrapper-chat.active').append(html);
+    // Appendo il messaggio in chat
+    $('#chat-window .wrapper-chat.active').append(html);
 
-  // inserisco l'ultimo messaggio e l'orario relativo
-  //nel template contatto nella lista contatti, dopo controllo lunghezza
-  if (randomRisposta.length > 15) {
-    var trimmedRisposta = randomRisposta.substring(0, 13) + "...";
-    console.log(trimmedRisposta);
-    $('.active .last-msg').text(trimmedRisposta);
+    // inserisco l'ultimo messaggio e l'orario relativo
+    //nel template contatto nella lista contatti, dopo controllo lunghezza
+    if (randomRisposta.length > 15) {
+      var trimmedRisposta = randomRisposta.substring(0, 13) + "...";
+      console.log(trimmedRisposta);
+      $('.active .last-msg').text(trimmedRisposta);
 
-  }else{
+    }else{
 
-    $('.active .last-msg').text(randomRisposta);
-  }
-  // Orario ultimo messaggio
-  $('.active .time-lastMsg').text(hours);
+      $('.active .last-msg').text(randomRisposta);
+    }
+    // Orario ultimo messaggio
+    $('.active .time-lastMsg').text(hours);
+  }, 2500, );
+
+
 }
 
 
@@ -466,4 +482,20 @@ function randomTime(){
     }
     return get_hour + ":" + get_minutes
 
+}
+
+// Funzione per eliminare ultimo messaggio
+function activedrop(){
+
+  var drop = $(this).siblings('.drop');
+  drop.addClass('active');
+
+}
+
+//funzione per clonare ed appendere l'animazione all'interno
+//dell'ultima riga presetne in chat
+function addAnimation(){
+
+  var wrapperPallini =  $('#templateTwo .contact-chat').clone();
+  var appentTo = $('.wrapper-chat.active').append(wrapperPallini);
 }

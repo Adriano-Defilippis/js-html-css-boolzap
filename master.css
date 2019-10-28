@@ -169,6 +169,8 @@ div.img-profile,
   border-radius: 10px;
 
   align-self: center;
+
+  position: relative;
 }
 
 .message > *{
@@ -179,8 +181,28 @@ div.img-profile,
   display: none;
 }
 
+
+
 .message:hover
 .fa-caret-down{
+  display: block;
+}
+
+
+
+.message .drop{
+  width: 200px;
+  position: absolute;
+  top: 55px;
+  right: 50px;
+
+  background: white;
+
+  display: none;
+}
+
+.fa-caret-down:checked
+.message .drop{
   display: block;
 }
 
@@ -247,4 +269,26 @@ div.img-profile,
 
 .contact.display_none{
   display: none;
+}
+
+.display_none{
+  display: none;
+}
+
+
+/* ANIMAZIONE */
+.wrapperPallini{
+  position: relative;
+    top: 50%;
+    right: -10px;
+    width: 50px;
+    display: flex;
+    justify-content: space-around;
+}
+
+
+.wrapperPallini::after{
+  display: table;
+  content: "";
+  clear: both;
 }
