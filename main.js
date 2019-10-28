@@ -355,14 +355,12 @@ function randomGenerator(array){
 function bot(append_to){
 
   // Aggiungo animazione in attesa della timing function
-  setTimeout(function(){
-    addAnimation();
-  }, 0);
+  addAnimation()
 
   setTimeout(function(){
 
     // rimuovo Animazione
-    $('.contact-chat.animation').remove();
+    $('.wrapper-chat .contact-chat.animation').remove();
 
     var arr_risposte = [
       "ciao",
